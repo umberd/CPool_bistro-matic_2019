@@ -7,22 +7,26 @@
 
 SRC	=	main.c		\
 
-NAME	=	calc
+NAME	=	main
 
-LIBDIR	=	lib/my
+LIBDIR	=	lib/my/other
+LIBDIR2	=	lib/my/btree
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C $(LIBDIR)
-	gcc -o $(NAME) $(SRC) -L./lib/ -lmy
+	make -C $(LIBDIR2)
+	gcc -o $(NAME) $(SRC) -L./lib/ -lmy -lbtree
 	
 clean:
 	make clean -C $(LIBDIR)
+	make clean -C $(LIBDIR2)
 	rm -f $(OBJ)
 
 fclean: clean
 	make fclean -C $(LIBDIR)
+	make fclean -C $(LIBDIR2)
 	rm -f $(NAME)
 
 re:	fclean all

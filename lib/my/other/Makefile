@@ -15,15 +15,17 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	ar -rc -o $(NAME) $(OBJ)
-	cp my.h ../../include/
-	cp libmy.a ..
+	cp my.h ../../../include/
+	cp libmy.a ../..
 	
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f ../../include/my.h
-	rm -f ../libmy.a
+	rm -f ../../../include/my.h
+	rm -f ../../libmy.a
 
 re:	fclean all
+
+.PHONY : re clean fclean
