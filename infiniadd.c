@@ -5,13 +5,11 @@
 ** No file there, just an epitech header example
 */
 
-#include"lib/my/my_putchar.c"
-#include"lib/my/my_putstrnbr.c"
-#include"lib/my/my_strcat.c"
-#include"lib/my/my_strcmp.c"
-#include"lib/my/my_strlen.c"
+#include"include/my.h"
 #include<stdio.h>
 #include<stdlib.h>
+
+int my_putstrnbr(char const *str);
 
 int verif_alpha(char *s1, char *s2)
 {
@@ -98,7 +96,7 @@ void call_sub(char *argv[])
             my_putstrnbr(infinite_sub(argv[1], &argv[2][1]));
     }
 }
-
+/*
 int main(int argc, char *argv[])
 {
     if (argc != 3 || verif_alpha(argv[1], argv[2]))
@@ -114,4 +112,4 @@ int main(int argc, char *argv[])
             my_putstrnbr(infinite_add(argv[1], argv[2]));
     my_putchar('\n');
     return 0;
-}
+}*/

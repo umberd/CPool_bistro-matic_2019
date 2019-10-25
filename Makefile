@@ -6,8 +6,12 @@
 ##
 
 SRC	=	main.c		\
+		inf_mult.c	\
+		infiniadd.c	\
+		my_putstrnbr.c	\
+		my_strcmp.c
 
-NAME	=	main
+NAME	=	calc
 
 LIBDIR	=	lib/my/other
 LIBDIR2	=	lib/my/btree
