@@ -35,7 +35,6 @@ char *inf_mult(char *nb1, char *nb2, char const *base)
     for (i = 0; nb1[i] != '\0'; i++) {
         for (j = 0; nb2[j] != '\0'; j++) {
             tmp = tmp + (nb1[i] - 48) * (nb2[j] - 48) + (result[i+j] - 48);
-            printf("tmp = %d\n", tmp);
             result[i+j] = tmp%10 +48;
             tmp = tmp/10;
         }
