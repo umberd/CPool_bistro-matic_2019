@@ -11,7 +11,8 @@ SRC	=	main.c		\
 		my_putstrnbr.c	\
 		modifstr.c \
 		evalexpr.c \
-		my_strcmp.c
+		my_strcmp.c	\
+		error.c
 
 NAME	=	calc
 
