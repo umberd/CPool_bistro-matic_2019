@@ -7,7 +7,8 @@
 
 SRC	=	main.c		\
 		inf_mult.c	\
-		infiniadd.c	\
+		inf_sub.c	\
+		inf_add.c	\
 		my_putstrnbr.c	\
 		modifstr.c \
 		evalexpr.c \
