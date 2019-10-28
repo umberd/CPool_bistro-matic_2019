@@ -15,6 +15,8 @@ void another_newf(char *str, int i, char *res)
         my_strcat(res, ")*(");
     if (str[i] == '/')
         my_strcat(res, ")/(");
+    if (str[i] == '%')
+        my_strcat(res, ")\%(");
     if (str[i] == '(')
         my_strcat(res, "((");
     if (str[i] == ')')
@@ -48,7 +50,8 @@ char *modifstr(char *str)
     for (int i = 0; str[i] != 0; i++) {
         newf(str, i, res);
         if (str[i] != ' ' && str[i] != '+' && str[i] != '-' &&
-            str[i] != '*' && str[i] != '/') {
+            str[i] != '*' && str[i] != '/' && str[i] != '%' &&
+            str[i] != '\n') {
                 c[0] = str[i];
                 my_strcat(res, c);
         }

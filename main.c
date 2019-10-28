@@ -20,7 +20,8 @@ int main(int argc, char **argv)
     char expression[4096];
     read(STDIN_FILENO, expression, 4096);
     if (argc >= 4) {
-        my_put_nbr(eval_expr(modifstr(expression)));
+        my_putstr(modifstr(expression));
+        //my_put_nbr(eval_expr(modifstr(expression)));
         //my_putchar('\n');
         return 0;
     }
