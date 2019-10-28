@@ -9,15 +9,22 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+char *modifstr(char *str);
+
+int eval_expr(char const *s);
+
 char *inf_mult(char *nb1, char *nb2, char const *base);
 
 int main(int argc, char **argv)
 {
     char expression[4096];
     read(STDIN_FILENO, expression, 4096);
-    my_putstr("Read through pipe : ");
-    my_putstr(expression);
-    if (argc > 1)
-        my_putstr(inf_mult(argv[1],argv[2],argv[3]));
-    return 0;
+    if (argc >= 4) {
+        char str[] = "ABV";
+        //my_put_nbr(eval_expr(modifstr(expression)));
+        my_putstr(str);
+        //my_putchar('\n');
+        return 0;
+    }
+    return (84);
 }

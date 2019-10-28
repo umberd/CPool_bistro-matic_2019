@@ -9,6 +9,8 @@ SRC	=	main.c		\
 		inf_mult.c	\
 		infiniadd.c	\
 		my_putstrnbr.c	\
+		modifstr.c \
+		evalexpr.c \
 		my_strcmp.c
 
 NAME	=	calc
