@@ -50,7 +50,7 @@ char *nb_complement(char *nb)
     return nb;
 }
 
-char *my_inf_sub_two(char *nb1, char *nb2, int *is_neg)
+char *inf_sub_two(char *nb1, char *nb2, int *is_neg)
 {
     char *result;
     char tmp[] = "1";
@@ -64,29 +64,27 @@ char *my_inf_sub_two(char *nb1, char *nb2, int *is_neg)
     if (len1 > len2)
         nb2_cpy = nb_comp_equalize(nb2_cpy, len1);
     nb2_cpy = nb_complement(nb2_cpy);
-    result = inf_add(nb1_cpy, nb2_cpy);
+    result = inf_add_two(nb1_cpy, nb2_cpy);
     if ((my_strlen(result) > len1) && (my_strlen(result) > len2))
-        return (inf_add(result, tmp) + 1);
+        return (inf_add_two(result, tmp) + 1);
     *is_neg = 1;
     return nb_complement(result);
 }
 
-char *my_inf_sub(char **av)
+char *inf_sub(char *str1, char *str2)
 {
     char *result;
     int is_neg = 0;
 
-    if (av[1][0] == '\0' || av[2][0] == '\0')
-        return 84;
-    if (av[1][0] == '-' && av[2][0] == '-')
-        result = inf_sub_two(&av[2][1], &av[1][1], &is_neg);
-    if (av[1][0] == '-' && av[2][0] != '-') {
+    if (str1[0] == '-' && str2[0] == '-')
+        result = inf_sub_two(&str2[1], &str1[1], &is_neg);
+    if (str1[0] == '-' && str2[0] != '-') {
         is_neg = 1;
-        result = my_inf_add(&av[1][1], &av[2][0]);
+        result = inf_add(&str1[1], &str2[0]);
     }
-    if (av[1][0] != '-' && av[2][0] == '-')
-        result = inf_add(&av[1][0], &av[2][1], &is_neg);
-    if (av[1][0] != '-' && av[2][0] != '-')
-        result = inf_sub_two(av[1], av[2], &is_neg);
+    if (str1[0] != '-' && str2[0] == '-')
+        result = inf_add(&str1[0], &str2[1]);
+    if (str1[0] != '-' && str2[0] != '-')
+        result = inf_sub_two(str1, str2, &is_neg);
     return my_putstr_l_z(result, is_neg);
 }

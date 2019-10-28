@@ -21,16 +21,14 @@ char *malloc_digit(char *to_copy, int i)
     return result;
 }
 
-void my_putstr_l_z(char const *result, int is_neg)
+char *my_putstr_l_z(char *result, int is_neg)
 {
     char *neg;
     int len_result;
 
-    neg[0] = '-';
-    neg[1] = '\0';
-    for(; result[0] == '0'; result++);
-    if (result == '\0') {
-        *neg = malloc(sizeof(char) * 2);
+    for (;result[0] == '0'; result++);
+    if (result[0] == '\0') {
+        neg = malloc(sizeof(char) * 2);
         neg[0] = '0';
         neg[1] = '\0';
         return neg;
@@ -38,7 +36,7 @@ void my_putstr_l_z(char const *result, int is_neg)
         len_result = my_strlen(result);
         neg = malloc(sizeof(char) * (len_result + 2));
         neg[0] = '-';
-        neg = my_strcat(neg, result)
+        neg = my_strcat(neg, result);
         return neg;
     } else
         return result;

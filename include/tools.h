@@ -6,3 +6,4 @@
 */
 
 char *malloc_digit(char *to_copy, int i);
+char *my_putstr_l_z(char *result, int is_neg);
