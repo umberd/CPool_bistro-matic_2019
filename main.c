@@ -29,12 +29,10 @@ int main(int argc, char **argv)
     char *spec = argv[2];
 
     if (argc >= 4) {
-        if (error_test(expression,base,spec)) {
-            my_putstr("Syntax error");
+        if (error_test(expression,base,spec))
             return 1;
-        }
-        my_putstr(infinite_sub(s1, s2));
-        //my_putstr(eval_expr(modifstr(expression)));
+        //my_putstr(infinite_sub(s1, s2));
+        my_putstr(eval_expr(modifstr(expression)));
         //my_putchar('\n');
         return 0;
     }

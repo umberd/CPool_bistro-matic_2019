@@ -5,7 +5,15 @@
 ** Adding stuff together
 */
 
+#include "include/my.h"
 #include <stdio.h>
+
+int print_error(char const *str)
+{
+    my_putstr("Syntax error -> ");
+    my_putstr(str);
+    return 0;
+}
 
 int base_include_test(char *str, char *base, char *spec)
 {
@@ -19,7 +27,7 @@ int base_include_test(char *str, char *base, char *spec)
             if (spec[i] == str[x])
                 check = 1;
         if (!check)
-            return 0;
+            return print_error("unexpected character");
     }
     return 1;
 }
@@ -35,10 +43,21 @@ int char_in_array(char c, char *str)
 
 int cases_one(char *str, char *base, char *spec)
 {
+    int count1 = 0;
+    int count2 = 0;
+
     for (int i = 0; str[i] != '\n'; i++) {
         if (char_in_array(str[i], base) && str[i+1] == spec[0])
-            return 0;
+            return print_error("missing operand before parenthesis");
     }
+    for (int i = 0; str[i] != '\n'; i++) {
+        if (str[i] == spec[0])
+            count1++;
+        if (str[i] == spec[1])
+            count2++;
+    }
+    if (count1 != count2)
+        return print_error("parenthesis count unbalanced");
     return 1;
 }
 
