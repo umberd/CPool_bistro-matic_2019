@@ -34,16 +34,16 @@ char *inf_mult(char *nb1, char *nb2, char const *base)
     my_revstr(nb2);
     for (i = 0; nb1[i] != '\0'; i++) {
         for (j = 0; nb2[j] != '\0'; j++) {
-            tmp = tmp + (nb1[i] - 48) * (nb2[j] - 48) + (result[i+j] - 48);
-            result[i+j] = tmp%10 +48;
-            tmp = tmp/10;
+            tmp = tmp + (nb1[i] - 48) * (nb2[j] - 48) + (result[i + j] - 48);
+            result[i + j] = tmp % 10 + 48;
+            tmp = tmp / 10;
         }
     }
     if (tmp > 0) {
-        result[i+j-1] = tmp + 48;
-        result[i+j] = '\0';
+        result[i + j - 1] = tmp + 48;
+        result[i + j] = '\0';
     } else
-        result[i+j-1] = '\0';
+        result[i + j - 1] = '\0';
     my_revstr(result);
     return result;
 }
