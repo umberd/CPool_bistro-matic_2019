@@ -10,7 +10,7 @@
 
 int print_error(char const *str, char *expression, int index)
 {
-    my_putstr("Syntax error -> ");
+    my_putstr("syntax error -> ");
     my_putstr(str);
     my_putstr("\n\n");
     my_putstr(expression);
