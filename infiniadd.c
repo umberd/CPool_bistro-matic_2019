@@ -61,7 +61,7 @@ char *infinite_sub(char *s1, char * s2)
         int op1 = (len1 <= 0) ? 0 : s1[len1 - 1] - 48;
         int op2 = (len2 <= 0) ? 0 : s2[len2 - 1] - 48;
         int temp = op1 - op2 - ret;
-        if (temp < 0) {
+        if (temp < 0 && len1 != 1) {
             temp = op1 + 10 - op2 - ret;
             ret = 1;
         }
@@ -96,7 +96,7 @@ void call_sub(char *argv[])
             my_putstrnbr(infinite_sub(argv[1], &argv[2][1]));
     }
 }
-/*
+
 int main(int argc, char *argv[])
 {
     if (argc != 3 || verif_alpha(argv[1], argv[2]))
@@ -112,4 +112,4 @@ int main(int argc, char *argv[])
             my_putstrnbr(infinite_add(argv[1], argv[2]));
     my_putchar('\n');
     return 0;
-}*/
+}
