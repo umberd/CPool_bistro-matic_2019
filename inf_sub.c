@@ -5,7 +5,6 @@
 ** my_inf_add
 */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "./include/my.h"
 #include "./include/tools.h"
@@ -82,8 +81,8 @@ char *my_inf_sub(char **av)
     if (av[1][0] == '-' && av[2][0] == '-')
         result = inf_sub_two(&av[2][1], &av[1][1], &is_neg);
     if (av[1][0] == '-' && av[2][0] != '-') {
-        is_neg = 1
-        result = inf_add(&av[1][1], &av[2][0], &is_neg);
+        is_neg = 1;
+        result = my_inf_add(&av[1][1], &av[2][0]);
     }
     if (av[1][0] != '-' && av[2][0] == '-')
         result = inf_add(&av[1][0], &av[2][1], &is_neg);
