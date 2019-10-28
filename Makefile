@@ -5,14 +5,14 @@
 ## Makefile
 ##
 
-SRC	=	main.c		\
+SRC	=	main.c	\
 		inf_mult.c	\
 		inf_sub.c	\
 		inf_add.c	\
 		my_putstrnbr.c	\
-		modifstr.c \
-		evalexpr.c \
-		my_strcmp.c \
+		modifstr.c	\
+		evalexpr.c	\
+		my_strcmp.c	\
 		tools.c
 
 NAME	=	calc
