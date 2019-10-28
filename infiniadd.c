@@ -97,6 +97,7 @@ void call_sub(char *argv[])
     }
 }
 
+/*
 int main(int argc, char *argv[])
 {
     if (argc != 3 || verif_alpha(argv[1], argv[2]))
@@ -113,3 +114,4 @@ int main(int argc, char *argv[])
     my_putchar('\n');
     return 0;
 }
+*/
