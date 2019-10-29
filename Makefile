@@ -1,39 +1,69 @@
 ##
 ## EPITECH PROJECT, 2019
-## Main Makefile
-## File description:
 ## Makefile
+## File description:
+## Makefile to build project
 ##
 
-SRC	=	main.c	\
-		inf_mult.c	\
-		inf_sub.c	\
-		inf_add.c	\
-		my_putstrnbr.c	\
-		modifstr.c \
-		evalexpr.c \
-		my_strcmp.c	\
-		error.c \
-		tools.c
+CC		=	gcc
 
-NAME	=	calc
+FLAGS		=	-Werror -Wall -Wextra
 
-LIBDIR	=	lib/my
+MAIN		=	main.c
 
-all:	$(NAME)
+SRC		=	inf_mult.c	\
+			inf_sub.c	\
+			inf_add.c	\
+			my_putstrnbr.c	\
+			modifstr.c \
+			evalexpr.c \
+			my_strcmp.c	\
+			error.c \
+			tools.c
+
+OBJ     	=       $(SRC:.c=.o) $(MAIN:.c=.o)
+
+NAME    	=       calc
+
+INCLUDE 	=       ./include
+
+LIB_FOLDER      =       ./lib/my
+
+LIB_NAME        =       my
+
+TEST		=	evalexpr.c \
+			tests/test_evalexpr.c
+
+TEST_FLAG	=	--coverage -lcriterion
+
+TEST_NAME	=	unit_tests
+
+all:		$(NAME)
 
 $(NAME):	$(OBJ)
-	make -C $(LIBDIR)
-	gcc -o $(NAME) $(SRC) -L./lib/ -lmy
+		make -C $(LIB_FOLDER)
+		$(CC) -o $(NAME) $(OBJ) -I$(INCLUDE) -L$(LIB_FOLDER) -l$(LIB_NAME) $(FLAGS)
 
 clean:
-	make clean -C $(LIBDIR)
-	rm -f $(OBJ)
+		rm -f $(OBJ)
+		cd $(LIB_FOLDER) && make clean
+		rm -f *~
+		rm -f *#
 
-fclean: clean
-	make fclean -C $(LIBDIR)
-	rm -f $(NAME)
+fclean:		clean
+		cd $(LIB_FOLDER) && make fclean
+		rm -f $(NAME)
+		rm -f $(TEST_NAME)
+		rm -f *.gcda
+		rm -f *.gcno
 
-re:	fclean all
+tests_run:	all
+		$(CC) $(FLAGS) -o $(TEST_NAME) $(TEST) $(TEST_FLAG) -I$(INCLUDE) -L$(LIB_FOLDER) -l$(LIB_NAME) && ./$(TEST_NAME)
 
-.PHONY: re clean fclean all
+re:		fclean all
+		cd $(LIB_FOLDER) && make re
+
+auteur:
+		echo $(USER) > auteur
+
+.PHONY: 	all clean fclean re tests_run
