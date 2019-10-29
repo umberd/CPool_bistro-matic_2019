@@ -24,7 +24,8 @@ char *inf_mult_two(char *result, char *nb1, char *nb2,
                 char const *base)
 {
     int i;
-    int tmp = 0;
+    (void) base;
+    int tmp;
     int carry = 0;
     int j;
 
@@ -47,7 +48,6 @@ char *inf_mult(char *nb1, char *nb2, char const *base)
     (void) base;
     int len_result = my_strlen(nb1) + my_strlen(nb2);
     char *result = malloc(sizeof(char)*(len_result + 1));
-    int tmp = 0;
     char *cp1;
     char *cp2;
 

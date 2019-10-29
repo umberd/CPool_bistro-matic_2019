@@ -33,8 +33,9 @@ LIB_FOLDER      =       ./lib/my
 
 LIB_NAME        =       my
 
-TEST		=	evalexpr.c \
-			tests/test_evalexpr.c
+OBJ_TEST	=	$(SRC:.c=.o) $(TEST:.c=.o)
+
+TEST		=	tests/test_evalexpr.c
 
 TEST_FLAG	=	--coverage -lcriterion
 
@@ -48,6 +49,7 @@ $(NAME):	$(OBJ)
 
 clean:
 		rm -f $(OBJ)
+		rm -f $(OBJ_TEST)
 		cd $(LIB_FOLDER) && make clean
 		rm -f *~
 		rm -f *#
@@ -59,8 +61,9 @@ fclean:		clean
 		rm -f *.gcda
 		rm -f *.gcno
 
-tests_run:	all
-		$(CC) $(FLAGS) -o $(TEST_NAME) $(TEST) $(TEST_FLAG) -I$(INCLUDE) -L$(LIB_FOLDER) -l$(LIB_NAME) && ./$(TEST_NAME)
+tests_run:	$(OBJ_TEST)
+		make -C $(LIB_FOLDER)
+		$(CC) $(FLAGS) -o $(TEST_NAME) $(TEST) $(SRC) $(TEST_FLAG) -I$(INCLUDE) -L$(LIB_FOLDER) -l$(LIB_NAME) && ./$(TEST_NAME)
 
 re:		fclean all
 		cd $(LIB_FOLDER) && make re
