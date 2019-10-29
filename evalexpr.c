@@ -5,11 +5,10 @@
 ** No file there, just an epitech header example
 */
 #include"include/my.h"
+#include "include/my_inf_add.h"
 #include<unistd.h>
 #include<stdlib.h>
 
-char *infinite_add(char *s1, char * s2);
-char *infinite_sub(char *s1, char * s2);
 char *inf_mult(char *nb1, char *nb2, char const *base);
 char *modifstr(char *str);
 
@@ -69,9 +68,9 @@ char *eval_expr(char const *s)
     int i = 0;
     while (str[i] != '\0') {
         if (str[i] == '+')
-            res = infinite_add(res, operation(&str, i, 0));
+            res = inf_add(res, operation(&str, i, 0));
         if (str[i] == '-')
-            res = infinite_sub(res, operation(&str, i, 0));
+            res = inf_sub(res, operation(&str, i, 0));
         /*if (str[i] == '*')
             //res *= operation(&str, i, 0);
         if (str[i] == '/')

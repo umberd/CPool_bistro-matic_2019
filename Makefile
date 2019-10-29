@@ -1,41 +1,39 @@
 ##
 ## EPITECH PROJECT, 2019
-## CPool_Day03_2019
+## Main Makefile
 ## File description:
-## No file there, just an epitech header example
+## Makefile
 ##
 
-SRC	=	main.c		\
+SRC	=	main.c	\
 		inf_mult.c	\
-		infiniadd.c	\
+		inf_sub.c	\
+		inf_add.c	\
 		my_putstrnbr.c	\
 		modifstr.c \
 		evalexpr.c \
 		my_strcmp.c	\
-		error.c
+		error.c \
+		tools.c
 
 NAME	=	calc
 
-LIBDIR	=	lib/my/other
-LIBDIR2	=	lib/my/btree
+LIBDIR	=	lib/my
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C $(LIBDIR)
-	make -C $(LIBDIR2)
-	gcc -o $(NAME) $(SRC) -L./lib/ -lmy -lbtree
-	
+	gcc -o $(NAME) $(SRC) -L./lib/ -lmy
+
 clean:
 	make clean -C $(LIBDIR)
-	make clean -C $(LIBDIR2)
 	rm -f $(OBJ)
 
 fclean: clean
 	make fclean -C $(LIBDIR)
-	make fclean -C $(LIBDIR2)
 	rm -f $(NAME)
 
 re:	fclean all
 
-.PHONY: re clean fclean
+.PHONY: re clean fclean all

@@ -6,6 +6,7 @@
 */
 
 #include "include/my.h"
+#include "include/my_inf_add.h"
 #include <unistd.h>
 #include <sys/wait.h>
 
