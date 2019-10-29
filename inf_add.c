@@ -10,8 +10,6 @@
 #include "./include/my_inf_add.h"
 #include <stdlib.h>
 
-int my_putstrnbr(char const *str);
-
 char *inf_add_nb_zero(char *nb, int *retenu, int *i, char *result)
 {
     int nb_tmp;
