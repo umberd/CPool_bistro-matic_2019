@@ -28,11 +28,9 @@ char *inf_mult_two(char *result, char *nb1, char *nb2,
     int carry = 0;
     int j;
 
-    for (i = 0; nb2[i] != '\0'; i++)
-    {
+    for (i = 0; nb2[i] != '\0'; i++) {
         carry = 0;
-        for (j = 0; nb1[j] != '\0'; j++)
-        {
+        for (j = 0; nb1[j] != '\0'; j++) {
             tmp = carry + (nb1[j] - '0') * (nb2[i] - '0') + result[i+j] - '0';
             carry = tmp / 10;
             result[i+j] = (tmp % 10) + '0'; 

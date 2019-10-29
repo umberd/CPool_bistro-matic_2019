@@ -50,7 +50,6 @@ char single_divisor(char *nb_a, char *nb_b, char *base)
     for (int i = 1; i < my_strlen(base); i++) {
         char c = base[i];
         char chr[] = {c, '\0'};
-        //printf("%s\n", inf_mult(nb_b, chr, base));
         if (my_strcmpp(nb_a, inf_mult(nb_b, chr, base)) < 0)
             return res;
         else
