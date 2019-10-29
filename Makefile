@@ -14,6 +14,8 @@ MAIN		=	main.c
 SRC		=	inf_mult.c	\
 			inf_sub.c	\
 			inf_add.c	\
+			inf_div.c	\
+			inf_mod.c	\
 			my_putstrnbr.c	\
 			modifstr.c \
 			evalexpr.c \

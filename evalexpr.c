@@ -10,6 +10,8 @@
 #include<stdlib.h>
 
 char *inf_mult(char *nb1, char *nb2, char const *base);
+char *inf_mod(char *a, char *b, char *base);
+char *inf_div(char *a, char *b, char *base);
 char *modifstr(char *str);
 
 char  *my_strtol(char **str)
@@ -71,12 +73,12 @@ char *eval_expr(char const *s)
             res = inf_add(res, operation(&str, i, 0));
         if (str[i] == '-')
             res = inf_sub(res, operation(&str, i, 0));
-        /*if (str[i] == '*')
-            //res *= operation(&str, i, 0);
+        if (str[i] == '*')
+            res = inf_mult(res, operation(&str, i, 0), NULL);
         if (str[i] == '/')
-            //res /= operation(&str, i, 1);
+            res = inf_div(res, operation(&str, i, 0), "0123456789");
         if (str[i] == '%')
-            //res = res % operation(&str, i, 1);*/
+            res = inf_mod(res, operation(&str, i, 0), "0123456789");
         if (str[i] != '+' && str[i] != '-' &&
             str[i] != '*' && str[i] != '/' && str[i] != '%')
             str = str + 1;

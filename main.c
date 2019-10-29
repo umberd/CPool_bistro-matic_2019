@@ -18,6 +18,8 @@ char *inf_mult(char *nb1, char *nb2, char const *base);
 
 char *infinite_sub(char *s1, char * s2);
 
+char *inf_div(char *a, char *b, char *base);
+
 int error_test(char *str, char *base, char *spec);
 
 int main(int argc, char **argv)
@@ -28,13 +30,11 @@ int main(int argc, char **argv)
     char *s2 = "4";
     char *base = argv[1];
     char *spec = argv[2];
-
+    
     if (argc >= 4) {
         if (error_test(expression,base,spec))
             return 1;
-        //my_putstr(infinite_sub(s1, s2));
         my_putstr(eval_expr(modifstr(expression)));
-        //my_putchar('\n');
         return 0;
     }
     return (84);
