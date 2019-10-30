@@ -16,6 +16,7 @@ SRC		=	inf_mult.c	\
 			inf_add.c	\
 			inf_div.c	\
 			inf_mod.c	\
+			check_zero.c \
 			my_putstrnbr.c	\
 			modifstr.c \
 			evalexpr.c \
