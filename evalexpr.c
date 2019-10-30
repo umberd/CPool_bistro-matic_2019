@@ -45,14 +45,15 @@ char *remove_par(char **s, int i)
     return str1;
 }
 
-char *eval_expr(char const *s, char *spec);
+char *eval_expr(char const *s, char *base, char *spec);
 
-char *operation(char **str, int i, int verifzero)
+char *operation(char **str, int verifzero, char *base, char *spec)
 {
+    int i = 0;
     char *s = *str;
     char *res;
     if (s[i + 1] == '(')
-        res = eval_expr(remove_par(str, 1));
+        res = eval_expr(remove_par(str, 1),base,spec);
     else
         res = my_strtol(str);
     if (verifzero && res == 0) {
@@ -63,22 +64,22 @@ char *operation(char **str, int i, int verifzero)
         return res;
 }
 
-char *eval_expr(char const *s, char *spec)
+char *eval_expr(char const *s, char *base, char *spec)
 {
     char *str = my_strdup(s);
     char *res = my_strtol(&str);
     int i = 0;
     while (str[i] != '\0') {
         if (str[i] == spec[2])
-            res = inf_add(res, operation(&str, i, 0));
+            res = inf_add(res, operation(&str, 0, base, spec));
         if (str[i] == spec[3])
-            res = inf_sub(res, operation(&str, i, 0));
+            res = inf_sub(res, operation(&str, 0, base, spec));
         if (str[i] == spec[4])
-            res = inf_mult(res, operation(&str, i, 0), NULL);
+            res = inf_mult(res, operation(&str, 0, base, spec), NULL);
         if (str[i] == spec[5])
-            res = inf_div(res, operation(&str, i, 0), "0123456789");
+            res = inf_div(res, operation(&str, 1, base, spec), base);
         if (str[i] == spec[6])
-            res = inf_mod(res, operation(&str, i, 0), "0123456789");
+            res = inf_mod(res, operation(&str, 1, base, spec), base);
         if (str[i] != spec[2] && str[i] != spec[3] &&
             str[i] != spec[4] && str[i] != spec[5] && str[i] != spec[6])
             str = str + 1;

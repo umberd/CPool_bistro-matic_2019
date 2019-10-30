@@ -12,7 +12,7 @@
 
 char *modifstr(char *str);
 
-char *eval_expr(char const *s, char *spec);
+char *eval_expr(char const *s, char *base, char *spec);
 
 char *inf_mult(char *nb1, char *nb2, char const *base);
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     if (argc >= 4) {
         if (error_test(expression,base,spec))
             return 1;
-        my_putstr(eval_expr(modifstr(expression),spec));
+        my_putstr(eval_expr(modifstr(expression),base,spec));
         return 0;
     }
     return (84);
