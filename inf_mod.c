@@ -43,7 +43,6 @@ char *inf_mod_two(char *nb_a, char *nb_b, char *a, char *base)
 char *inf_mod(char *a, char *b, char *base)
 {
     char *res = NULL;
-    int len_a = my_strlen(a);
     int len_b = my_strlen(b);
     char *nb_a = NULL;
     char *nb_b = NULL;

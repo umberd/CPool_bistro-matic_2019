@@ -49,7 +49,6 @@ char *getstr_from_to(char *str, int start, int end)
 char single_divisor(char *nb_a, char *nb_b, char *base)
 {
     char res = base[0];
-    char c;
     char *chr = malloc(sizeof(char) * 2);
 
     for (int i = 1; i < my_strlen(base); i++) {
@@ -85,7 +84,6 @@ char *inf_div_two(char *nb_a, char *nb_b, char *a, char *base)
 char *inf_div(char *a, char *b, char *base)
 {
     char *res;
-    int len_a = my_strlen(a);
     int len_b = my_strlen(b);
     char *nb_a = NULL;
     char *nb_b = NULL;

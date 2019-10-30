@@ -56,7 +56,7 @@ void newf(char *str, int i, char *res, char *base, char *spec)
         }
     }
     if (str[i] == spec[3]) {
-        if (((i == 0) || (!char_in_array(str[i - 1], base)) && str[i - 1] != spec[1])) {
+        if (((i == 0) || !char_in_array(str[i - 1], base)) && str[i - 1] != spec[1]) {
             my_strxcat(res, base[0], 1);
             my_strxcat(res, spec[3], 1);
         }
