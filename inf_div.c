@@ -9,9 +9,7 @@
 #include<stdio.h>
 
 char *inf_mult(char *nb1, char *nb2, char const *base);
-
 char *inf_sub(char *str1, char *str2);
-
 char *my_putstr_l_z(char *result, int is_neg);
 
 int my_strcmpp(char const *s1, char const *s2)
@@ -89,8 +87,12 @@ char *inf_div(char *a, char *b, char *base)
     int len_b = my_strlen(b);
     char *nb_a = NULL;
     char *nb_b = NULL;
-    if (my_strcmpp(a, b) < 0)
-        return "0";
+
+    if (my_strcmpp(a, b) < 0) {
+        res = malloc(sizeof(char) * 2);
+        res[0] = base[0];
+        return res;
+    }
     nb_a = getstr_from_to(a, 0, len_b);
     nb_b = getstr_from_to(b, 0, len_b);
     if (my_strcmpp(nb_a, nb_b) < 0){
