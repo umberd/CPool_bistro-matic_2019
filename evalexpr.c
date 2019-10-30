@@ -13,14 +13,17 @@ char *inf_mult_verif(char *nb1, char *nb2, char const *bs, char *);
 char *inf_mod_verif(char *a, char *b, char *bs, char *);
 char *inf_div_verif(char *a, char *b, char *bs, char *);
 char *modifstr(char *str);
+int char_in_array(char c, char *str);
 
-char  *my_strtol(char **str)
+char  *my_strtol(char **str, char *base)
 {
+    my_putstr(str[0]);
+    my_putchar('\n');
     char *str_num = malloc(sizeof(char)*my_strlen(str[0]));
     int i = 0;
     int j = 0;
-    for (; (str[0][i] < 48 || str[0][i] > 57) && str[0][i] != 0; i++);
-    for (; str[0][i] != 0 && str[0][i] >= 48 && str[0][i] <= 57; i++, j++)
+    for (; !char_in_array(str[0][i], base) && str[0][i] != 0; i++);
+    for (; str[0][i] != 0 && char_in_array(str[0][i], base); i++, j++)
         str_num[j] = str[0][i];
     str[0] = &str[0][i];
     return str_num;
@@ -55,7 +58,7 @@ char *operation(char **str, int verifzero, char *base, char *spec)
     if (s[i + 1] == spec[0])
         res = eval_expr(remove_par(str, 1, spec),base,spec);
     else
-        res = my_strtol(str);
+        res = my_strtol(str, base);
     if (verifzero && res == 0) {
         write(2, "Cannot divide or modulo by zero\n", 32);
         return NULL;
@@ -67,7 +70,7 @@ char *operation(char **str, int verifzero, char *base, char *spec)
 char *eval_expr(char const *s, char *bs, char *sp)
 {
     char *str = my_strdup(s);
-    char *res = my_strtol(&str);
+    char *res = my_strtol(&str, bs);
     int i = 0;
 
     while (str[i] != '\0') {
