@@ -13,7 +13,7 @@ int my_show_word_array(char * const *tab)
 {
     for (int i = 0; tab[i] != 0; i++) {
         write(1, tab[i], my_strlen(tab[i]));
-        write(1,"\n", 1);
+        write(1, "\n", 1);
     }
     return (0);
 }

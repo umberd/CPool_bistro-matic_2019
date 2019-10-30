@@ -30,10 +30,10 @@ int main(int argc, char **argv)
     char *s2 = "4";
     char *base = argv[1];
     char *spec = argv[2];
-    
+
     if (argc >= 4) {
-        if (error_test(expression,base,spec))
-            return 1;
+        if (error_test(expression, base, spec))
+            exit(84);
         my_putstr(eval_expr(modifstr(expression, base, spec), base, spec));
         return 0;
     }

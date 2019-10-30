@@ -28,7 +28,7 @@ char *my_memset(char *s, char c, int n)
     return s;
 }
 
-char *inf_mult_two(char *result, char *nb1, char *nb2, 
+char *inf_mult_two(char *result, char *nb1, char *nb2,
                 char const *base)
 {
     int i;

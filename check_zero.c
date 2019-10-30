@@ -8,8 +8,11 @@
 #include <stdio.h>
 
 char *my_putstr_l_z(char *result, int is_neg);
+
 char *inf_mult(char *nb1, char *nb2, char const *base);
+
 char *inf_div(char *nb1, char *nb2, char const *base);
+
 char *inf_mod(char *nb1, char *nb2, char const *base);
 
 char *inf_mult_verif(char *nb1, char *nb2, char *base, char *spec)

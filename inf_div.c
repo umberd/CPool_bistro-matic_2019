@@ -9,7 +9,9 @@
 #include<stdio.h>
 
 char *inf_mult(char *nb1, char *nb2, char const *base);
+
 char *inf_sub(char *str1, char *str2);
+
 char *my_putstr_l_z(char *result, int is_neg);
 
 int my_strcmpp(char const *s1, char const *s2)
@@ -56,7 +58,7 @@ char single_divisor(char *nb_a, char *nb_b, char *base)
             return res;
         else
             res = base[i];
-    }   
+    }
     return res;
 }
 

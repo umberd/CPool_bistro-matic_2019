@@ -26,11 +26,11 @@ void add_element(char **tab, char *str)
 {
     int point = 0;
     for ( ; tab[point] != 0; point++);
-    char *new_str = malloc(sizeof(char)*my_strlen(str));
+    char *new_str = malloc(sizeof(char) * my_strlen(str));
     for (int i = 0; str[i] != '\0'; i++)
         new_str[i] = str[i];
     tab[point] = new_str;
-    tab[point+1] = 0;
+    tab[point + 1] = 0;
 }
 
 char **my_str_to_word_array(char const *str)
@@ -42,7 +42,7 @@ char **my_str_to_word_array(char const *str)
     char *word = malloc(sizeof(char)*my_strlen(str));
 
     while (str[point] != '\0') {
-        for (point2 = 0; !is_char_valid(str[point]) 
+        for (point2 = 0; !is_char_valid(str[point])
         && str[point] != '\0'; point++);
         for ( ; is_char_valid(str[point]) ; point++) {
             word[point2] = str[point];
@@ -50,7 +50,7 @@ char **my_str_to_word_array(char const *str)
         }
         word[point2] = '\0';
         if (word[0] != '\0')
-            add_element(tab,word);
+            add_element(tab, word);
         for ( int j = 0; word[j] != '\0'; word[j] = '\0', j++);
     }
     return tab;

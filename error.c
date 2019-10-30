@@ -10,14 +10,7 @@
 
 int print_error(char const *str, char *expression, int index)
 {
-    my_putstr("syntax error -> ");
-    my_putstr(str);
-    my_putstr("\n\n");
-    my_putstr(expression);
-    for (int i = 0; i < index; i++, my_putchar(' '));
-    my_putstr("^\n");
-    for (int i = 0; i < index; i++, my_putchar(' '));
-    my_putstr("HERE");
+    my_putstr("syntax error");
     return 0;
 }
 
@@ -33,7 +26,7 @@ int base_include_test(char *str, char *base, char *spec)
             if (spec[i] == str[x])
                 check = 1;
         if (!check)
-            return print_error("unexpected character",str,x);
+            return print_error("unexpected character", str, x);
     }
     return 1;
 }
@@ -54,24 +47,24 @@ int cases_one(char *str, char *base, char *spec)
 
     for (int i = 0; str[i] != '\n'; i++) {
         if (char_in_array(str[i], base) && str[i+1] == spec[0])
-            return print_error("missing operand before parenthesis",str,i);
-        if (char_in_array(str[i+1], base) && str[i] == spec[1])
-            return print_error("missing operand after parenthesis",str,i);
+            return print_error("missing operand before parenthesis", str, i);
+        if (char_in_array(str[i + 1], base) && str[i] == spec[1])
+            return print_error("missing operand after parenthesis", str, i);
         if (str[i] == spec[0])
             count1++;
         if (str[i] == spec[1])
             count2++;
     }
     if (count1 != count2)
-        return print_error("parenthesis count unbalanced",str,0);
+        return print_error("parenthesis count unbalanced", str, 0);
     return 1;
 }
 
 int error_test(char *str, char *base, char *spec)
 {
-    if (!base_include_test(str,base,spec))
+    if (!base_include_test(str, base, spec))
         return 1;
-    if (!cases_one(str,base,spec))
+    if (!cases_one(str, base, spec))
         return 1;
     return 0;
 }

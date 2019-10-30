@@ -10,7 +10,7 @@ void my_putchar(char c);
 int my_putstrnbr(char const *str)
 {
     int offset = 0;
-    while (*(str + offset) <= '0') {// || *(str + offset) == 2) {
+    while (*(str + offset) <= '0') {
         if (*(str + offset) == '\0') {
             my_putchar('0');
             return (0);

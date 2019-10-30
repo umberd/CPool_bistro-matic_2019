@@ -63,7 +63,7 @@ int my_put_nbr(int nb)
         buffer /= 10;
 
     for (int i = 0 ; i < counter; i++ ) {
-        pow_result = power(i,counter);
+        pow_result = power(i, counter);
         buffer = nb / pow_result;
         nb = nb - buffer * pow_result;
         my_putchar(buffer+48);
