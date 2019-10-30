@@ -26,15 +26,15 @@ char  *my_strtol(char **str)
     return str_num;
 }
 
-char *remove_par(char **s, int i)
+char *remove_par(char **s, int i, char *spec)
 {
     char *str = *s;
     int par = 0;
     int x = i + 1;
-    for (; str[x] != ')' || par != 0; x++){
-        if (str[x] == '(')
+    for (; str[x] != spec[1] || par != 0; x++){
+        if (str[x] == spec[0])
             par += 1;
-        if (str[x] == ')')
+        if (str[x] == spec[1])
             par -= 1;
     }
     char *str1 = malloc(sizeof(char) * x - 1 - i);
@@ -52,8 +52,8 @@ char *operation(char **str, int verifzero, char *base, char *spec)
     int i = 0;
     char *s = *str;
     char *res;
-    if (s[i + 1] == '(')
-        res = eval_expr(remove_par(str, 1),base,spec);
+    if (s[i + 1] == spec[0])
+        res = eval_expr(remove_par(str, 1, spec),base,spec);
     else
         res = my_strtol(str);
     if (verifzero && res == 0) {
