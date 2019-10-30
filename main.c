@@ -26,8 +26,6 @@ int main(int argc, char **argv)
 {
     char expression[4096];
     read(STDIN_FILENO, expression, 4096);
-    char *s1 = "0";
-    char *s2 = "4";
     char *base = argv[1];
     char *spec = argv[2];
 
