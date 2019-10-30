@@ -9,9 +9,9 @@
 #include<unistd.h>
 #include<stdlib.h>
 
-char *inf_mult(char *nb1, char *nb2, char const *base);
-char *inf_mod(char *a, char *b, char *base);
-char *inf_div(char *a, char *b, char *base);
+char *inf_mult_verif(char *nb1, char *nb2, char const *bs, char *);
+char *inf_mod_verif(char *a, char *b, char *bs, char *);
+char *inf_div_verif(char *a, char *b, char *bs, char *);
 char *modifstr(char *str);
 
 char  *my_strtol(char **str)
@@ -64,25 +64,27 @@ char *operation(char **str, int verifzero, char *base, char *spec)
         return res;
 }
 
-char *eval_expr(char const *s, char *base, char *spec)
+char *eval_expr(char const *s, char *bs, char *sp)
 {
     char *str = my_strdup(s);
     char *res = my_strtol(&str);
     int i = 0;
+
     while (str[i] != '\0') {
-        if (str[i] == spec[2])
-            res = inf_add(res, operation(&str, 0, base, spec));
-        if (str[i] == spec[3])
-            res = inf_sub(res, operation(&str, 0, base, spec));
-        if (str[i] == spec[4])
-            res = inf_mult(res, operation(&str, 0, base, spec), NULL);
-        if (str[i] == spec[5])
-            res = inf_div(res, operation(&str, 1, base, spec), base);
-        if (str[i] == spec[6])
-            res = inf_mod(res, operation(&str, 1, base, spec), base);
-        if (str[i] != spec[2] && str[i] != spec[3] &&
-            str[i] != spec[4] && str[i] != spec[5] && str[i] != spec[6])
+        if (str[i] == sp[2])
+            res = inf_add(res, operation(&str, 0, bs, sp));
+        if (str[i] == sp[3])
+            res = inf_sub(res, operation(&str, 0, bs, sp));
+        if (str[i] == sp[4])
+            res = inf_mult_verif(res, operation(&str, 0, bs, sp), bs, sp);
+        if (str[i] == sp[5])
+            res = inf_div_verif(res, operation(&str, 1, bs, sp), bs, sp);
+        if (str[i] == sp[6])
+            res = inf_mod_verif(res, operation(&str, 1, bs, sp), bs, sp);
+        if (str[i] != sp[2] && str[i] != sp[3] &&
+            str[i] != sp[4] && str[i] != sp[5] && str[i] != sp[6])
             str = str + 1;
     }
+    
     return res;
 }

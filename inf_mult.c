@@ -59,7 +59,6 @@ char *inf_mult(char *nb1, char *nb2, char const *base)
     char *cp1;
     char *cp2;
 
-    printf("%s %s\n", nb1, nb2);
     if (!result)
         return (NULL);
     my_memset(result, base[0], len_result);
