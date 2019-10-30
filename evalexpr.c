@@ -17,8 +17,6 @@ int char_in_array(char c, char *str);
 
 char  *my_strtol(char **str, char *base)
 {
-    my_putstr(str[0]);
-    my_putchar('\n');
     char *str_num = malloc(sizeof(char)*my_strlen(str[0]));
     int i = 0;
     int j = 0;
@@ -88,6 +86,5 @@ char *eval_expr(char const *s, char *bs, char *sp)
             str[i] != sp[4] && str[i] != sp[5] && str[i] != sp[6])
             str = str + 1;
     }
-    
     return res;
 }

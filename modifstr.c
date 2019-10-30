@@ -13,8 +13,10 @@ int char_in_array(char c, char *str);
 
 void my_strxcat(char *res, char c, int x)
 {
+    char *string = malloc(sizeof(char)*2);
+    string[0] = c;
     for (int i = 0; i < x; i++)
-        my_strcat(res, &c);
+        res = my_strcat(res, string);
 }
 
 void another_newf(char *str, int i, char *res, char *spec)
@@ -43,7 +45,7 @@ void another_newf(char *str, int i, char *res, char *spec)
 void newf(char *str, int i, char *res, char *base, char *spec)
 {
     if (str[i] == spec[2]) {
-        if (((i == 0) || (!char_in_array(str[i - 1], base))) && str[i - 1] != spec[1]) {
+        if (((i == 0) || !char_in_array(str[i - 1], base)) && str[i - 1] != spec[1]) {
             my_strxcat(res, base[0], 1);
             my_strxcat(res, spec[2], 1);
         }
