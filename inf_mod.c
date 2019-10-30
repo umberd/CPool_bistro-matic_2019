@@ -20,34 +20,42 @@ char *getstr_from_to(char *str, int start, int end);
 
 char single_divisor(char *nb_a, char *nb_b, char *base);
 
-char *under_ff(char *a, char *nb_a, char *nb_b, int len_b)
+char *inf_mod_two(char *nb_a, char *nb_b, char *a, char *base)
 {
-    if (my_strcmpp(nb_a, nb_b) < 0){
-        free(nb_a);
-        nb_a = getstr_from_to(a, 0, len_b);
+    char *c = malloc(sizeof(char) * 2);
+    int len_nb_a = my_strlen(nb_a);
+    int len_a = my_strlen(a);
+    char *res = malloc(sizeof(char) * len_a);
+    char *rst = malloc(sizeof(char) * len_a);
+    char *chr = malloc(sizeof(char) * 2);
+
+    for (int i = 0; i < len_a; res[i] = '\0', rst[i] = '\0', i++);
+    for (int i = 0; i < len_a - len_nb_a + 1; i++) {
+        c[0] = single_divisor(nb_a, nb_b, base);
+        res = my_strcat(res, c);
+        rst = inf_sub(nb_a, inf_mult(nb_b, c, base));
+        chr[0] = a[len_nb_a + i];
+        nb_a = (rst[0] == '0') ? chr : my_strcat(rst, chr);
     }
-    return nb_a;
+    return rst;
 }
 
 char *inf_mod(char *a, char *b, char *base)
 {
-    if (my_strcmpp(a, b) < 0)
-        return a;
+    char *res = NULL;
     int len_a = my_strlen(a);
     int len_b = my_strlen(b);
-    char *nb_a = getstr_from_to(a, 0, len_b);
-    char *nb_b = getstr_from_to(b, 0, len_b);
-    nb_a = under_ff(a, nb_a, nb_b, len_b);
-    char *res = malloc(sizeof(char) * len_a);
-    char *rst = malloc(sizeof(char) * len_a);
-    for (int i = 0; i < len_a; res[i] = '\0', rst[i] = '\0', i++);
-    int len_nb_a = my_strlen(nb_a);
-    for (int i = 0; i < len_a - len_nb_a + 1; i++) {
-        char c[] = {single_divisor(nb_a, nb_b, base), '\0'};
-        res = my_strcat(res, c);
-        rst = inf_sub(nb_a, inf_mult(nb_b, c, base));
-        char chr[] = {a[len_nb_a + i], '\0'};
-        nb_a = (rst[0] == '0') ? chr : my_strcat(rst, chr);
+    char *nb_a = NULL;
+    char *nb_b = NULL;
+
+    if (my_strcmpp(a, b) < 0)
+        return a;
+    nb_a = getstr_from_to(a, 0, len_b);
+    nb_b = getstr_from_to(b, 0, len_b);
+    if (my_strcmpp(nb_a, nb_b) < 0){
+        free(nb_a);
+        nb_a = getstr_from_to(a, 0, len_b);
     }
-    return rst;
+    res = inf_div_two(nb_a, nb_b, a, base);
+    return my_putstr_l_z(res, 0);
 }
