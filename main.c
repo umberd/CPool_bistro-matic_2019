@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-char *modifstr(char *str);
+char *modifstr(char *str, char *base);
 
 char *eval_expr(char const *s, char *base, char *spec);
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     if (argc >= 4) {
         if (error_test(expression,base,spec))
             return 1;
-        my_putstr(eval_expr(modifstr(expression),base,spec));
+        my_putstr(eval_expr(modifstr(expression, base), base, spec));
         return 0;
     }
     return (84);
