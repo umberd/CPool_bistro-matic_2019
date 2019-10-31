@@ -29,7 +29,7 @@ char *inf_add_three(char *nb1, char *nb2, char *base, int len_base)
         i = nb1[i] != '\0' ? i + 1 : i;
         j = nb2[j] != '\0' ? j + 1 : j;
     }
-    result[i > j ? i : j] = retenu != 0 ? base[retenu] : result[i];
+    result[i > j ? i : j] = retenu != 0 ? base[retenu] : result[i > j ? i : j];
     return result;
 }
 
@@ -59,5 +59,5 @@ char *inf_add(char *str1, char *str2, char *base, char *sp)
         result = inf_sub(&str2[0], &str1[1], base, sp);
     if (str2[0] != sp[3] && str1[0] != sp[3])
         result = inf_add_two(str1, str2, base);
-    return my_putstr_l_z(result, is_neg, sp[3]);
+    return my_putstr_l_z(result, is_neg, sp[3], base[0]);
 }

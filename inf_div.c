@@ -99,5 +99,5 @@ char *inf_div(char *a, char *b, char *base)
         nb_a = getstr_from_to(a, 0, len_b);
     }
     res = inf_div_two(nb_a, nb_b, a, base);
-    return my_putstr_l_z(res, 0, '-');
+    return my_putstr_l_z(res, 0, 2, base[0]);
 }

@@ -6,7 +6,6 @@
 */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "include/my.h"
 #include "include/tools.h"
 #include "include/my_inf_add.h"
@@ -59,7 +58,7 @@ char *inf_sub_two(char *nb1, char *nb2, int *is_neg, char *base)
     nb2_cpy = nb_complement(nb2_cpy, base);
     result = inf_add_two(nb1_cpy, nb2_cpy, base);
     if ((my_strlen(result) > len1) && (my_strlen(result) > len2))
-        return (inf_add_two(result, tmp, base) + 1);
+        return inf_add_two(result, tmp, base) + 1;
     *is_neg = 1;
     return nb_complement(result, base);
 }
@@ -80,5 +79,5 @@ char *inf_sub(char *str1, char *str2, char *base, char *sp)
         result = inf_add(&str1[0], &str2[1], "0123456789", sp);
     if (str1[0] != sp[3] && str2[0] != sp[3])
         result = inf_sub_two(str1, str2, &is_neg, base);
-    return my_putstr_l_z(result, 1, sp[3]);
+    return my_putstr_l_z(result, 1, sp[3], base[0]);
 }
