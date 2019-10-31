@@ -18,3 +18,11 @@ int check_dupe(char *str)
     return 1;
 }
 
+int check_repetition(char *str1, char *str2)
+{
+    for (int i = 0; i < my_strlen(str1); i++)
+        for (int j = 0; j < my_strlen(str2); j++)
+            if (str1[i] == str2[j])
+                return print_error();
+    return 1;
+}
