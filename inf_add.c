@@ -5,73 +5,60 @@
 ** No file there, just an epitech header example
 */
 
+#include <stdlib.h>
 #include "include/my.h"
 #include "include/tools.h"
-#include "./include/my_inf_add.h"
-#include <stdlib.h>
+#include "include/my_inf_add.h"
 
-char *inf_add_nb_zero(char *nb, int *retenu, int *i, char *result)
-{
-    int nb_tmp;
-
-    for (; nb[*i] != '\0'; (*i)++) {
-        nb_tmp = nb[*i] - '0' + *retenu;
-        *retenu = nb_tmp / 10;
-        result = malloc_digit(result, *i);
-        result[*i] = nb_tmp % 10 + '0';
-    }
-    return result;
-}
-
-char *inf_add_three(char *nb1, char *nb2)
+char *inf_add_three(char *nb1, char *nb2, char *base, int len_base)
 {
     int nb_tmp = 0;
     int retenu = 0;
-    char *result = NULL;
+    char *result = malloc(sizeof(char) * (my_strlen(nb1) + my_strlen(nb1) + 1));
     int i = 0;
+    int j = 0;
+    int digit1;
+    int digit2;
 
-    for (;nb1[i] != '\0' && nb2[i] != '\0'; i++) {
-        nb_tmp = nb1[i] + nb2[i] - (2 * '0') + retenu;
-        retenu = nb_tmp / 10;
-        result = malloc_digit(result, i);
-        result[i] = nb_tmp % 10 + '0';
+    while (nb1[i] != '\0' || nb2[j] != '\0') {
+        digit1 = base_i(nb1[i], base) < 0 ? 0: base_i(nb1[i], base);
+        digit2 = base_i(nb2[j], base) < 0 ? 0: base_i(nb2[j], base);
+        nb_tmp = digit1 + digit2 + retenu;
+        retenu = nb_tmp / len_base;
+        result[i > j ? i : j] = base[nb_tmp % len_base];
+        i = nb1[i] != '\0' ? i + 1 : i;
+        j = nb2[j] != '\0' ? j + 1 : j;
     }
-    if (nb1[i] != '\0')
-        result = inf_add_nb_zero(nb1, &retenu, &i, result);
-    else
-        result = inf_add_nb_zero(nb2, &retenu, &i, result);
-    if (retenu != 0) {
-        result = malloc_digit(result, i + 1);
-        result[i] = retenu + '0';
-    }
+    result[i] = retenu != 0 ? base[retenu] : result[i];
     return result;
 }
 
-char *inf_add_two(char *nb1, char *nb2)
+char *inf_add_two(char *nb1, char *nb2, char *base)
 {
     char *result;
+    int len_base = my_strlen(base);
 
     my_revstr(nb1);
     my_revstr(nb2);
-    result = inf_add_three(nb1, nb2);
+    result = inf_add_three(nb1, nb2, base, len_base);
     my_revstr(result);
     return result;
 }
 
-char *inf_add(char *str1, char *str2)
+char *inf_add(char *str1, char *str2, char *base, char *sp)
 {
     char *result;
     int is_neg = 0;
 
-    if (str2[0] == '-' && str1[0] == '-') {
+    if (str2[0] == sp[3] && str1[0] == sp[3]) {
         is_neg = 1;
-        result = inf_add_two(&str1[1], &str2[1]);
+        result = inf_add_two(&str1[1], &str2[1], base);
     }
-    if (str2[0] == '-' && str1[0] != '-')
-        result = inf_sub(&str1[0], &str2[1]);
-    if (str2[0] != '-' && str1[0] == '-')
-        result = inf_sub(&str2[0], &str1[1]);
-    if (str2[0] != '-' && str1[0] != '-')
-        result = inf_add_two(str1, str2);
-    return my_putstr_l_z(result, is_neg);
+    if (str2[0] == sp[3] && str1[0] != sp[3])
+        result = inf_sub(&str1[0], &str2[1], base, sp);
+    if (str2[0] != sp[3] && str1[0] == sp[3])
+        result = inf_sub(&str2[0], &str1[1], base, sp);
+    if (str2[0] != sp[3] && str1[0] != sp[3])
+        result = inf_add_two(str1, str2, base);
+    return my_putstr_l_z(result, is_neg, sp[3]);
 }

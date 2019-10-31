@@ -4,10 +4,11 @@
 ** File description:
 ** No file there, just an epitech header example
 */
-#include"include/my.h"
+
+#include <unistd.h>
+#include <stdlib.h>
+#include "include/my.h"
 #include "include/my_inf_add.h"
-#include<unistd.h>
-#include<stdlib.h>
 
 char *inf_mult_verif(char *nb1, char *nb2, char const *bs, char *);
 
@@ -77,9 +78,9 @@ char *eval_expr(char const *s, char *bs, char *sp)
 
     while (str[i] != '\0') {
         if (str[i] == sp[2])
-            res = inf_add(res, operation(&str, 0, bs, sp));
+            res = inf_add(res, operation(&str, 0, bs, sp), bs, sp);
         if (str[i] == sp[3])
-            res = inf_sub(res, operation(&str, 0, bs, sp));
+            res = inf_sub(res, operation(&str, 0, bs, sp), bs, sp);
         if (str[i] == sp[4])
             res = inf_mult_verif(res, operation(&str, 0, bs, sp), bs, sp);
         if (str[i] == sp[5])

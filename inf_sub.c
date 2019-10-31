@@ -6,10 +6,10 @@
 */
 
 #include <stdlib.h>
-#include "./include/my.h"
-#include "./include/tools.h"
-#include "./include/my_inf_add.h"
-#include "./include/my_macro_abs.h"
+#include "include/my.h"
+#include "include/tools.h"
+#include "include/my_inf_add.h"
+#include "include/my_macro_abs.h"
 
 char *my_strcpy_spec(char *dest, char const *src)
 {
@@ -34,23 +34,17 @@ char *nb_comp_equalize(char *result, int len_result)
     return my_revstr(result);
 }
 
-char *nb_complement(char *nb)
+char *nb_complement(char *nb, char *base)
 {
-    char cpm[] = "9876543210";
-    char nor[] = "0123456789";
+    int len_base = my_strlen(base);
 
     for (int i = 0; nb[i] != '\0'; i++) {
-        for (int j = 0; j < 10; j++) {
-            if (nb[i] == nor[j]) {
-                nb[i] = cpm[j];
-                j = 10;
-            }
-        }
+        nb[i] = base[len_base - base_i(nb[i], base) - 1];
     }
     return nb;
 }
 
-char *inf_sub_two(char *nb1, char *nb2, int *is_neg)
+char *inf_sub_two(char *nb1, char *nb2, int *is_neg, char *base)
 {
     char *result;
     char tmp[] = "1";
@@ -63,28 +57,29 @@ char *inf_sub_two(char *nb1, char *nb2, int *is_neg)
     my_strcpy(nb2_cpy, nb2);
     if (len1 > len2)
         nb2_cpy = nb_comp_equalize(nb2_cpy, len1);
-    nb2_cpy = nb_complement(nb2_cpy);
-    result = inf_add_two(nb1_cpy, nb2_cpy);
+    nb2_cpy = nb_complement(nb2_cpy, base);
+    result = inf_add_two(nb1_cpy, nb2_cpy, base);
     if ((my_strlen(result) > len1) && (my_strlen(result) > len2))
-        return (inf_add_two(result, tmp) + 1);
+        return (inf_add_two(result, tmp, base) + 1);
     *is_neg = 1;
-    return nb_complement(result);
+    return nb_complement(result, base);
 }
 
-char *inf_sub(char *str1, char *str2)
+
+char *inf_sub(char *str1, char *str2, char *base, char *sp)
 {
     char *result;
     int is_neg = 0;
 
-    if (str1[0] == '-' && str2[0] == '-')
-        result = inf_sub_two(&str2[1], &str1[1], &is_neg);
-    if (str1[0] == '-' && str2[0] != '-') {
+    if (str1[0] == sp[3] && str2[0] == sp[3])
+        result = inf_sub_two(&str2[1], &str1[1], &is_neg, base);
+    if (str1[0] == sp[3] && str2[0] != sp[3]) {
         is_neg = 1;
-        result = inf_add(&str1[1], &str2[0]);
+        result = inf_add(&str1[1], &str2[0], "0123456789", sp);
     }
-    if (str1[0] != '-' && str2[0] == '-')
-        result = inf_add(&str1[0], &str2[1]);
-    if (str1[0] != '-' && str2[0] != '-')
-        result = inf_sub_two(str1, str2, &is_neg);
-    return my_putstr_l_z(result, is_neg);
+    if (str1[0] != sp[3] && str2[0] == sp[3])
+        result = inf_add(&str1[0], &str2[1], "0123456789", sp);
+    if (str1[0] != sp[3] && str2[0] != sp[3])
+        result = inf_sub_two(str1, str2, &is_neg, base);
+    return my_putstr_l_z(result, is_neg, sp[3]);
 }

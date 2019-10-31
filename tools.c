@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "./include/my.h"
+#include "include/my.h"
 
 char *malloc_digit(char *to_copy, int i)
 {
@@ -21,7 +21,7 @@ char *malloc_digit(char *to_copy, int i)
     return result;
 }
 
-char *my_putstr_l_z(char *result, int is_neg)
+char *my_putstr_l_z(char *result, int is_neg, char less)
 {
     char *neg;
     int len_result;
@@ -35,9 +35,17 @@ char *my_putstr_l_z(char *result, int is_neg)
     } else if (is_neg == 1) {
         len_result = my_strlen(result);
         neg = malloc(sizeof(char) * (len_result + 2));
-        neg[0] = '-';
+        neg[0] = less;
         neg = my_strcat(neg, result);
         return neg;
     } else
         return result;
+}
+
+int base_i(char const c, char const *base)
+{
+    for (int i = 0; base[i] != '\0'; i++)
+        if (base[i] == c)
+            return i;
+    return -1;
 }

@@ -4,10 +4,9 @@
 ** File description:
 ** No file there, just an epitech header example
 */
-#include"include/my.h"
-#include<stdio.h>
-#include<stddef.h>
-#include<stdlib.h>
+
+#include <stdlib.h>
+#include "include/my.h"
 
 int char_in_array(char c, char *str);
 

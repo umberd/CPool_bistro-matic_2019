@@ -4,15 +4,14 @@
 ** File description:
 ** No file there, just an epitech header example
 */
-#include"include/my.h"
-#include<stdlib.h>
-#include<stdio.h>
+
+#include <stdlib.h>
+#include "include/my.h"
+#include "include/tools.h"
 
 char *inf_mult(char *nb1, char *nb2, char const *base);
 
-char *inf_sub(char *str1, char *str2);
-
-char *my_putstr_l_z(char *result, int is_neg);
+char *inf_sub(char *str1, char *str2, char *base, char *sp);
 
 int my_strcmpp(char const *s1, char const *s2);
 
@@ -33,7 +32,7 @@ char *inf_mod_two(char *nb_a, char *nb_b, char *a, char *base)
     for (int i = 0; i < len_a - len_nb_a + 1; i++) {
         c[0] = single_divisor(nb_a, nb_b, base);
         res = my_strcat(res, c);
-        rst = inf_sub(nb_a, inf_mult(nb_b, c, base));
+        rst = inf_sub(nb_a, inf_mult(nb_b, c, base), base, "()+-*/%");
         chr[0] = a[len_nb_a + i];
         nb_a = (rst[0] == '0') ? chr : my_strcat(rst, chr);
     }
@@ -56,5 +55,5 @@ char *inf_mod(char *a, char *b, char *base)
         nb_a = getstr_from_to(a, 0, len_b);
     }
     res = inf_mod_two(nb_a, nb_b, a, base);
-    return my_putstr_l_z(res, 0);
+    return my_putstr_l_z(res, 0, '-');
 }

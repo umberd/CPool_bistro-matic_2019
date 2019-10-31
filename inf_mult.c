@@ -7,18 +7,8 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
-#include "./include/my.h"
-
-char *my_putstr_l_z(char *result, int is_neg);
-
-int base_i(char const c, char const *base)
-{
-    for (int i = 0; base[i] != '\0'; i++)
-        if (base[i] == c)
-            return i;
-    return 'a';
-}
+#include "include/my.h"
+#include "include/tools.h"
 
 char *my_memset(char *s, char c, int n)
 {
@@ -28,8 +18,7 @@ char *my_memset(char *s, char c, int n)
     return s;
 }
 
-char *inf_mult_two(char *result, char *nb1, char *nb2,
-                char const *base)
+char *inf_mult_two(char *result, char *nb1, char *nb2, char const *base)
 {
     int i;
     int len_base = my_strlen(base);
@@ -52,7 +41,7 @@ char *inf_mult_two(char *result, char *nb1, char *nb2,
     return my_revstr(result);
 }
 
-char *inf_mult(char *nb1, char *nb2, char const *base)
+char *inf_mult(char *nb1, char *nb2, char const *base, char *sp)
 {
     int len_result = my_strlen(nb1) + my_strlen(nb2);
     char *result = malloc(sizeof(char)*(len_result + 1));
@@ -65,5 +54,5 @@ char *inf_mult(char *nb1, char *nb2, char const *base)
     cp1 = my_revstr(my_strdup(nb1));
     cp2 = my_revstr(my_strdup(nb2));
     result = inf_mult_two(result, cp1, cp2, base);
-    return my_putstr_l_z(result, 0);
+    return my_putstr_l_z(result, 0, sp[3]);
 }

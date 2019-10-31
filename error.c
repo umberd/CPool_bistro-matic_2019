@@ -6,7 +6,6 @@
 */
 
 #include "include/my.h"
-#include <stdio.h>
 
 int print_error(void)
 {
