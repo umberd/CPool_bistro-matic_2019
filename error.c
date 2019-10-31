@@ -7,6 +7,8 @@
 
 #include "include/my.h"
 
+int check_dupe(char *str);
+
 int print_error(void)
 {
     my_putstr("syntax error");
@@ -61,6 +63,8 @@ int cases_one(char *str, char *base, char *spec)
 
 int error_test(char *str, char *base, char *spec)
 {
+    if (!check_dupe(base) || !check_dupe(spec))
+        return 1;
     if (!base_include_test(str, base, spec))
         return 1;
     if (!cases_one(str, base, spec))
