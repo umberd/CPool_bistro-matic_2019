@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "include/my.h"
 #include "include/tools.h"
 #include "include/my_inf_add.h"
@@ -14,12 +15,11 @@ char *inf_add_three(char *nb1, char *nb2, char *base, int len_base)
 {
     int nb_tmp = 0;
     int retenu = 0;
-    char *result = malloc(sizeof(char) * (my_strlen(nb1) + my_strlen(nb1) + 1));
+    char *result = malloc(sizeof(char) * (my_strlen(nb1) + my_strlen(nb2) + 1));
     int i = 0;
     int j = 0;
     int digit1;
     int digit2;
-
     while (nb1[i] != '\0' || nb2[j] != '\0') {
         digit1 = base_i(nb1[i], base) < 0 ? 0: base_i(nb1[i], base);
         digit2 = base_i(nb2[j], base) < 0 ? 0: base_i(nb2[j], base);
@@ -29,7 +29,7 @@ char *inf_add_three(char *nb1, char *nb2, char *base, int len_base)
         i = nb1[i] != '\0' ? i + 1 : i;
         j = nb2[j] != '\0' ? j + 1 : j;
     }
-    result[i] = retenu != 0 ? base[retenu] : result[i];
+    result[i > j ? i : j] = retenu != 0 ? base[retenu] : result[i];
     return result;
 }
 
@@ -37,7 +37,6 @@ char *inf_add_two(char *nb1, char *nb2, char *base)
 {
     char *result;
     int len_base = my_strlen(base);
-
     my_revstr(nb1);
     my_revstr(nb2);
     result = inf_add_three(nb1, nb2, base, len_base);

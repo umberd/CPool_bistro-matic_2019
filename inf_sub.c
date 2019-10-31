@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "include/my.h"
 #include "include/tools.h"
 #include "include/my_inf_add.h"
@@ -46,15 +47,13 @@ char *nb_complement(char *nb, char *base)
 
 char *inf_sub_two(char *nb1, char *nb2, int *is_neg, char *base)
 {
-    char *result;
     char tmp[] = "1";
-    int len1 = my_strlen(nb1);
-    int len2 = my_strlen(nb2);
-    char *nb1_cpy = malloc(sizeof(char) * (my_strlen(nb1) + 1));
-    char *nb2_cpy = malloc(sizeof(char) * (my_strlen(nb2) + 1));
+    int len1 = nb1 != NULL ? my_strlen(nb1) : 0;
+    int len2 = nb2 != NULL ? my_strlen(nb2) : 0;
+    char *result = NULL;
+    char *nb1_cpy = my_strdup(nb1);
+    char *nb2_cpy = my_strdup(nb2);
 
-    my_strcpy(nb1_cpy, nb1);
-    my_strcpy(nb2_cpy, nb2);
     if (len1 > len2)
         nb2_cpy = nb_comp_equalize(nb2_cpy, len1);
     nb2_cpy = nb_complement(nb2_cpy, base);
@@ -81,5 +80,5 @@ char *inf_sub(char *str1, char *str2, char *base, char *sp)
         result = inf_add(&str1[0], &str2[1], "0123456789", sp);
     if (str1[0] != sp[3] && str2[0] != sp[3])
         result = inf_sub_two(str1, str2, &is_neg, base);
-    return my_putstr_l_z(result, is_neg, sp[3]);
+    return my_putstr_l_z(result, 1, sp[3]);
 }
