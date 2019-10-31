@@ -19,6 +19,7 @@ SRC		=	inf_mult.c	\
 			check_zero.c \
 			my_putstrnbr.c	\
 			modifstr.c \
+			modifstr_sup.c	\
 			evalexpr.c \
 			my_strcmp.c	\
 			error.c \
@@ -47,7 +48,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 		make -C $(LIB_FOLDER)
-		$(CC) $(FLAGS) -o $(NAME) $(OBJ) -I$(INCLUDE) -L$(LIB_FOLDER) -l$(LIB_NAME) 
+		$(CC) $(FLAGS) -o $(NAME) $(OBJ) -I$(INCLUDE) -L$(LIB_FOLDER) -l$(LIB_NAME)
 
 clean:
 		rm -f $(OBJ)

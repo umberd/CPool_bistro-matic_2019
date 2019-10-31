@@ -10,20 +10,13 @@
 
 int char_in_array(char c, char *str);
 
-void my_strxcat(char *res, char c, int x)
-{
-    char *string = malloc(sizeof(char)*2);
-    string[0] = c;
-    for (int i = 0; i < x; i++)
-        res = my_strcat(res, string);
-}
+void my_strxcat(char *res, char c, int x);
 
-void custom_triple_cat(char *res, char a, char b, char c)
-{
-    my_strxcat(res, a, 1);
-    my_strxcat(res, b, 1);
-    my_strxcat(res, c, 1);
-}
+void custom_triple_cat(char *res, char a, char b, char c);
+
+void custom_triple_cat2(char *res, char a, char b, char c);
+
+void custom_double_cat(char *res, char a, char b);
 
 void another_newf(char *str, int i, char *res, char *spec)
 {
@@ -45,27 +38,17 @@ void newf(char *str, int i, char *res, char **tab)
     char *spec = tab[1];
     if (str[i] == spec[2]) {
         if (((i == 0) || !char_in_array(str[i - 1], base))
-        && str[i - 1] != spec[1]) {
-            my_strxcat(res, base[0], 1);
-            my_strxcat(res, spec[2], 1);
-        }
-        else {
-            my_strxcat(res, spec[1], 2);
-            my_strxcat(res, spec[2], 1);
-            my_strxcat(res, spec[0], 2);
-        }
+        && str[i - 1] != spec[1])
+            custom_double_cat(res, base[0], spec[2]);
+        else
+            custom_triple_cat2(res, spec[1], spec[2], spec[0]);
     }
     if (str[i] == spec[3]) {
         if (((i == 0) || !char_in_array(str[i - 1], base))
-        && str[i - 1] != spec[1]) {
-            my_strxcat(res, base[0], 1);
-            my_strxcat(res, spec[3], 1);
-        }
-        else {
-            my_strxcat(res, spec[1], 2);
-            my_strxcat(res, spec[3], 1);
-            my_strxcat(res, spec[0], 2);
-        }
+        && str[i - 1] != spec[1])
+            custom_double_cat(res, base[0], spec[3]);
+        else
+            custom_triple_cat2(res, spec[1], spec[3], spec[0]);
     }
     another_newf(str, i , res, spec);
 }
