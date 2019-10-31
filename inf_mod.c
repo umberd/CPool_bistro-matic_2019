@@ -55,5 +55,5 @@ char *inf_mod(char *a, char *b, char *base)
         nb_a = getstr_from_to(a, 0, len_b);
     }
     res = inf_mod_two(nb_a, nb_b, a, base);
-    return my_putstr_l_z(res, 0, '-');
+    return res;
 }

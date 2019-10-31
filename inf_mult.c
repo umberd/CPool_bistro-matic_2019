@@ -54,5 +54,5 @@ char *inf_mult(char *nb1, char *nb2, char const *base, char *sp)
     cp1 = my_revstr(my_strdup(nb1));
     cp2 = my_revstr(my_strdup(nb2));
     result = inf_mult_two(result, cp1, cp2, base);
-    return my_putstr_l_z(result, 0, sp[3]);
+    return my_putstr_l_z(result, 0, sp[3], base[0]);
 }

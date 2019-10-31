@@ -21,12 +21,12 @@ char *malloc_digit(char *to_copy, int i)
     return result;
 }
 
-char *my_putstr_l_z(char *result, int is_neg, char less)
+char *my_putstr_l_z(char *result, int is_neg, char less, char zero)
 {
     char *neg;
     int len_result;
 
-    for (;result[0] == '0'; result++);
+    for (; result[0] == zero; result++);
     if (result[0] == '\0') {
         neg = malloc(sizeof(char) * 2);
         neg[0] = '0';

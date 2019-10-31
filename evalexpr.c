@@ -72,13 +72,18 @@ char *operation(char **str, int verifzero, char *base, char *spec)
         return res;
 }
 
+void small_f(char const *s, char *sp)
+{
+    if (!check_ops(s, sp))
+        exit(84);
+}
+
 char *eval_expr(char const *s, char *bs, char *sp)
 {
     char *str = my_strdup(s);
     char *res = my_strtol(&str, bs);
     int i = 0;
-    if (!check_ops(s, sp))
-        exit(84);
+    small_f(s, bs);
     while (str[i] != '\0') {
         if (str[i] == sp[2])
             res = inf_add(res, operation(&str, 0, bs, sp), bs, sp);
