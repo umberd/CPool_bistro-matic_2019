@@ -20,6 +20,8 @@ char *modifstr(char *str);
 
 int char_in_array(char c, char *str);
 
+int check_ops(char const *str, char *spec);
+
 char  *my_strtol(char **str, char *base)
 {
     char *str_num = malloc(sizeof(char)*my_strlen(str[0]));
@@ -75,7 +77,8 @@ char *eval_expr(char const *s, char *bs, char *sp)
     char *str = my_strdup(s);
     char *res = my_strtol(&str, bs);
     int i = 0;
-
+    if (!check_ops(s, sp))
+        exit(84);
     while (str[i] != '\0') {
         if (str[i] == sp[2])
             res = inf_add(res, operation(&str, 0, bs, sp), bs, sp);

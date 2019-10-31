@@ -21,7 +21,6 @@ int main(int argc, char **argv)
     read(0, expression, 4096);
     char *base = argv[1];
     char *spec = argv[2];
-
     if (argc >= 4) {
         if (error_test(expression, base, spec))
             exit(84);

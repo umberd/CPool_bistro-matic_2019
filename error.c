@@ -65,9 +65,9 @@ int cases_one(char *str, char *base, char *spec)
 
 int error_test(char *str, char *base, char *spec)
 {
-    if (!check_dupe(base) || !check_dupe(spec))
-        return 1;
-    if (!check_repetition(base, spec))
+    if (str[0] == '\n' || my_strlen(spec) != 7)
+        return print_error() + 1;
+    if (!check_dupe(base) || !check_dupe(spec) || !check_repetition(base, spec))
         return 1;
     if (!base_include_test(str, base, spec))
         return 1;
