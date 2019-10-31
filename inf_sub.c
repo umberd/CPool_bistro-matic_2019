@@ -63,7 +63,6 @@ char *inf_sub_two(char *nb1, char *nb2, int *is_neg, char *base)
     return nb_complement(result, base);
 }
 
-
 char *inf_sub(char *str1, char *str2, char *base, char *sp)
 {
     char *result;

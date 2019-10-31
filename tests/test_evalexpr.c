@@ -9,6 +9,7 @@
 #include <criterion/criterion.h>
 
 char *eval_expr(char const *s, char *base, char *);
+
 char *modifstr(char *str, char *, char *);
 
 Test(evalexpr, 4_plus_4)
