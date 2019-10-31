@@ -22,6 +22,7 @@ SRC		=	inf_mult.c	\
 			evalexpr.c \
 			my_strcmp.c	\
 			error.c \
+			error2.c \
 			tools.c
 
 OBJ     	=       $(SRC:.c=.o) $(MAIN:.c=.o)
