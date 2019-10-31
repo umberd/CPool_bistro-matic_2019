@@ -83,7 +83,7 @@ char *eval_expr(char const *s, char *bs, char *sp)
     char *str = my_strdup(s);
     char *res = my_strtol(&str, bs);
     int i = 0;
-    small_f(s, bs);
+    small_f(s, sp);
     while (str[i] != '\0') {
         if (str[i] == sp[2])
             res = inf_add(res, operation(&str, 0, bs, sp), bs, sp);
