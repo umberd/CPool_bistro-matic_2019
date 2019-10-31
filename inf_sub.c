@@ -78,5 +78,5 @@ char *inf_sub(char *str1, char *str2, char *base, char *sp)
         result = inf_add(&str1[0], &str2[1], base, sp);
     if (str1[0] != sp[3] && str2[0] != sp[3])
         result = inf_sub_two(str1, str2, &is_neg, base);
-    return my_putstr_l_z(result, 1, sp[3], base[0]);
+    return my_putstr_l_z(result, is_neg, sp[3], base[0]);
 }
