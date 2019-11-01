@@ -58,9 +58,9 @@ char *modifstr(char *str, char *base, char *spec)
     char **tab = malloc(sizeof(char *) * 3);
     char *res = malloc(sizeof(char) * my_strlen(str) * 6);
     my_strxcat(res, spec[0], 3);
-    char *c = malloc(sizeof(char) * 1);
-    tab[0] = base;
-    tab[1] = spec;
+    char *c = malloc(sizeof(char) * 2);
+    tab[0] = my_strdup(base);
+    tab[1] = my_strdup(spec);
     for (int i = 0; str[i] != 0; i++) {
         newf(str, i, res, tab);
         if (str[i] != ' ' && str[i] != spec[2] && str[i] != spec[3] &&
@@ -71,7 +71,13 @@ char *modifstr(char *str, char *base, char *spec)
         }
     }
     free(c);
+    
+    printf("A: %s\n", res);
     my_strxcat(res, spec[1], 3);
     my_strcat(res, "\n");
+    //free(tab[0]);
+    //free(tab[1]);
+    free(tab);
+    printf("A: %s\n", res);
     return res;
 }

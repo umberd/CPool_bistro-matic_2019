@@ -15,7 +15,7 @@ char *inf_add_three(char *nb1, char *nb2, char *base, int len_base)
 {
     int nb_tmp = 0;
     int retenu = 0;
-    char *result = malloc(sizeof(char) * (my_strlen(nb1) + my_strlen(nb2) + 1));
+    char *result = malloc(sizeof(char) * (my_strlen(nb1) + my_strlen(nb2) + 5000));
     int i = 0;
     int j = 0;
     int digit1;
@@ -49,6 +49,7 @@ char *inf_add(char *str1, char *str2, char *base, char *sp)
     char *result;
     int is_neg = 0;
 
+    printf("CHECK %s %s \n", str1, str2);
     if (str2[0] == sp[3] && str1[0] == sp[3]) {
         is_neg = 1;
         result = inf_add_two(&str1[1], &str2[1], base);

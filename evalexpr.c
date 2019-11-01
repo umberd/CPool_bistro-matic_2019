@@ -24,13 +24,19 @@ int check_ops(char const *str, char *spec);
 
 char  *my_strtol(char **str, char *base)
 {
-    char *str_num = malloc(sizeof(char)*my_strlen(str[0]));
+    char *str_num = malloc(sizeof(char)*(my_strlen(*str) + 1));
     int i = 0;
     int j = 0;
-    for (; !char_in_array(str[0][i], base) && str[0][i] != 0; i++);
-    for (; str[0][i] != 0 && char_in_array(str[0][i], base); i++, j++)
-        str_num[j] = str[0][i];
-    str[0] = &str[0][i];
+    printf("len = %d %s\n", my_strlen(str[0]), *str);
+    for (; !char_in_array(*str[0], base) && *str[0] != '\0';)
+        if (str != NULL)
+            *str = *str + 1;
+    for (; *str[0] != '\0' && char_in_array(*str[0], base); j++) {
+        str_num[j] = *str[0];
+        if (str != NULL)
+            *str = *str+1;
+    }
+       
     return str_num;
 }
 
@@ -45,7 +51,7 @@ char *remove_par(char **s, int i, char *spec)
         if (str[x] == spec[1])
             par -= 1;
     }
-    char *str1 = malloc(sizeof(char) * x - 1 - i);
+    char *str1 = malloc(sizeof(char) * (x - i + 1));
     for (int j = 0; j < my_strlen(str1); j++)
         str1[j] = 0;
     my_strncpy(str1, str + i + 1, x - 1 - i);
@@ -81,9 +87,13 @@ void small_f(char const *s, char *sp)
 char *eval_expr(char const *s, char *bs, char *sp)
 {
     char *str = my_strdup(s);
+    my_putstr(str);
     char *res = my_strtol(&str, bs);
+    printf("\n");
+    my_putstr(str);
     int i = 0;
     small_f(s, sp);
+    printf("\nevexp = %s\n", res);
     while (str[i] != '\0') {
         if (str[i] == sp[2])
             res = inf_add(res, operation(&str, 0, bs, sp), bs, sp);
