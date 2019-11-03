@@ -34,8 +34,6 @@ LIB_FOLDER      =       ./lib/my
 
 LIB_NAME        =       my
 
-OBJ_TEST	=	$(SRC:.c=.o) $(TEST:.c=.o)
-
 TEST		=	tests/test_evalexpr.c
 
 TEST_FLAG	=	--coverage -lcriterion
