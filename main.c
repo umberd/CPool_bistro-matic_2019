@@ -27,7 +27,6 @@ int main(int argc, char **argv)
     if (argc >= 4) {
         if (error_test(expression, base, spec))
             exit(84);
-        my_putstr(modifstr(expression, base, spec));
         my_putstr(eval_expr(modifstr(expression, base, spec), base, spec));
         return 0;
     }
